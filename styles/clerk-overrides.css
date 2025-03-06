@@ -1,0 +1,346 @@
+/* More aggressive branding removal - target all possible classes */
+.cl-footerText,
+.cl-footerActionText,
+.cl-authFooter,
+.cl-powered-by,
+.cl-powered-by-clerk,
+.cl-badge,
+.cl-powered,
+.cl-branded,
+.cl-footer-powered,
+.cl-footer-branding,
+.cl-authFooterText,
+.cl-footer--clerk-reference,
+[data-localization-key="formButtonPrimary.signIn.actionCard.footer"],
+.cl-internal-wkkub3,
+.cl-internal-n11orh,
+.cl-internal-rdz6cy,
+footer > .cl-internal-rdz6cy,
+div[class*="cl-footer"],
+div[class*="cl-branded"],
+div[class*="cl-powered"],
+.cl-footer,
+.cl-auth-footer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  position: absolute !important;
+}
+
+/* Hide parent container of branding if empty after hiding the branding */
+.cl-footer:empty, 
+.cl-auth-footer:empty {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Base visibility fixes for Clerk components */
+.cl-rootBox,
+.cl-component,
+.cl-main,
+.cl-card {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  height: auto !important;
+  transform: none !important;
+}
+
+/* Center the auth component on the page - more compact sizing */
+.cl-rootBox {
+  width: 100% !important;
+  max-width: 380px !important; /* Smaller width */
+  margin: 2rem auto !important;
+  padding: 0 1rem !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Improved container styling */
+.cl-component {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Theme customization */
+:root {
+  --clerk-primary: #4F46E5;
+  --clerk-primary-hover: #4338CA;
+  --clerk-background: #ffffff;
+  --clerk-text: #111827;
+}
+
+/* Card styling - more elegant and compact */
+.cl-card {
+  width: 100% !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important; /* Lighter shadow */
+  border-radius: 12px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  background: var(--clerk-background) !important;
+  padding: 1.75rem !important; /* Smaller padding */
+  margin-bottom: 1.5rem !important;
+  text-align: center !important;
+}
+
+/* Make buttons look more elegant */
+.cl-button-primary {
+  background-color: var(--clerk-primary) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 11px 16px !important; /* Smaller padding */
+  transition: all 0.2s ease-in-out !important;
+  text-transform: none !important;
+  letter-spacing: 0.025em !important;
+  box-shadow: 0 1px 2px rgba(79, 70, 229, 0.1) !important;
+}
+
+.cl-button-primary:hover {
+  background-color: var(--clerk-primary-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.2) !important;
+}
+
+/* Ensure form elements are visible */
+.cl-form-control {
+  opacity: 1 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Input fields styling - more elegant */
+.cl-input {
+  width: 100% !important;
+  border-radius: 8px !important;
+  border: 1px solid #E5E7EB !important;
+  padding: 10px 14px !important; /* Smaller padding */
+  font-size: 0.95rem !important; /* Smaller font */
+  transition: border-color 0.15s ease-in-out !important;
+  text-align: left !important;
+}
+
+.cl-input:focus {
+  border-color: var(--clerk-primary) !important;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15) !important; /* Subtler focus ring */
+  outline: none !important;
+}
+
+/* Header styling - more compact */
+.cl-headerTitle {
+  font-weight: 700 !important;
+  font-size: 1.5rem !important; /* Smaller font */
+  color: var(--clerk-text) !important;
+  margin-bottom: 0.5rem !important; /* Less margin */
+  text-align: center !important;
+}
+
+.cl-headerSubtitle {
+  color: #6B7280 !important;
+  font-size: 0.95rem !important; /* Smaller font */
+  margin-bottom: 1.5rem !important; /* Less margin */
+  text-align: center !important;
+}
+
+/* Override any hidden properties */
+[hidden], 
+.cl-hidden {
+  display: block !important;
+}
+
+/* Make sure the footer with sign-up link is visible */
+.cl-footerAction,
+.cl-footerActionLink {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: var(--clerk-primary) !important;
+  font-weight: 500 !important;
+  margin-top: 1rem !important;
+}
+
+.cl-footerActionLink:hover {
+  text-decoration: underline !important;
+}
+
+/* Make sure inputs are properly sized and visible */
+.cl-formButtonPrimary {
+  width: 100% !important;
+  background: var(--clerk-primary) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 11px !important; /* Smaller padding */
+  margin-top: 1rem !important; /* Less margin */
+  transition: all 0.2s ease-in-out !important;
+}
+
+.cl-formButtonPrimary:hover {
+  background: var(--clerk-primary-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.2) !important;
+}
+
+/* Make social buttons visible */
+.cl-socialButtonsIconButton {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  border-radius: 8px !important;
+  border: 1px solid #E5E7EB !important;
+  padding: 9px 12px !important; /* Smaller padding */
+  transition: all 0.2s ease-in-out !important;
+  margin: 0.25rem 0 !important; /* Less margin */
+}
+
+.cl-socialButtonsIconButton:hover {
+  background-color: #F9FAFB !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Identity preview */
+.cl-identityPreview {
+  width: 100% !important;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 8px !important;
+  padding: 0.75rem !important;
+  margin-bottom: 1rem !important;
+  transition: border-color 0.15s ease-in-out !important;
+}
+
+.cl-identityPreview:hover {
+  border-color: var(--clerk-primary) !important;
+}
+
+/* Form fields consistent width and alignment */
+.cl-form {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.75rem !important; /* Less gap */
+}
+
+.cl-formFieldRow {
+  width: 100% !important;
+  margin-bottom: 0.75rem !important; /* Less margin */
+}
+
+.cl-formFieldLabel {
+  text-align: left !important;
+  margin-bottom: 0.35rem !important; /* Less margin */
+  display: block !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important; /* Smaller font */
+}
+
+/* Social buttons better alignment */
+.cl-socialButtonsBlockButton {
+  width: 100% !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* Divider with proper alignment */
+.cl-dividerText {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 1rem 0 !important; /* Less margin */
+  color: #9CA3AF !important; /* Lighter color */
+  font-size: 0.8rem !important; /* Smaller font */
+}
+
+.cl-dividerText::before,
+.cl-dividerText::after {
+  content: '' !important;
+  flex: 1 !important;
+  border-top: 1px solid #E5E7EB !important;
+}
+
+.cl-dividerText::before {
+  margin-right: 1rem !important;
+}
+
+.cl-dividerText::after {
+  margin-left: 1rem !important;
+}
+
+/* Better footer alignment */
+.cl-footerAction {
+  margin-top: 1rem !important; /* Less margin */
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 0.875rem !important;
+}
+
+.cl-footerActionText {
+  color: #6B7280 !important;
+  margin-right: 0.5rem !important;
+}
+
+.cl-footerActionLink {
+  color: var(--clerk-primary) !important;
+  font-weight: 600 !important; 
+  text-decoration: none !important;
+  transition: all 0.15s ease !important;
+}
+
+.cl-footerActionLink:hover {
+  color: var(--clerk-primary-hover) !important;
+  text-decoration: none !important;
+}
+
+/* Ensure all elements in the auth form are properly shown */
+.cl-internal-b3fm6y {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Fix for phone input alignment */
+.cl-phoneInputBox {
+  width: 100% !important;
+}
+
+/* Make sure the error messages are visible and properly aligned */
+.cl-alert {
+  width: 100% !important;
+  padding: 0.75rem !important;
+  border-radius: 8px !important;
+  margin-bottom: 1rem !important;
+  text-align: left !important;
+}
+
+.cl-alertText {
+  font-size: 0.875rem !important;
+  margin: 0 !important;
+}
+
+/* Fix height to eliminate potential empty space */
+.cl-card::after {
+  content: "" !important;
+  display: none !important;
+  height: 0 !important;
+  visibility: hidden !important;
+}
