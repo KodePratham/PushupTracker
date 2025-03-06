@@ -10,12 +10,21 @@ try {
   console.log('⚠️ Error initializing Prisma client:', error.message);
 }
 
-// Run Next.js build using npx which handles permissions better
+// Build Next.js application programmatically to avoid permission issues
 console.log('🔄 Building Next.js application...');
 try {
-  execSync('npx next build', { stdio: 'inherit' });
-  console.log('✅ Next.js build completed');
+  // Use Next.js programmatic API instead of CLI
+  const nextBuild = require('next/dist/build').default;
+  const dir = process.cwd();
+  
+  // Run the build with default options
+  nextBuild(dir, {}).then(() => {
+    console.log('✅ Next.js build completed');
+  }).catch((err) => {
+    console.error('❌ Next.js build failed:', err);
+    process.exit(1);
+  });
 } catch (error) {
-  console.error('❌ Next.js build failed');
+  console.error('❌ Failed to start Next.js build:', error);
   process.exit(1);
 }
