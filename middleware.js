@@ -24,6 +24,16 @@ export default withClerkMiddleware((request) => {
   return NextResponse.redirect(signInUrl);
 });
 
+// Stop Middleware running on static files
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder
+     */
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.png$).*)",
+  ],
 };
