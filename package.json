@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "npx prisma migrate dev",
-    "postinstall": "chmod +x ./node_modules/.bin/prisma && npx prisma generate"
+    "prisma:migrate": "npx prisma migrate dev"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.11.0",
