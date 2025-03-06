@@ -2,9 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/pushups": "pages/api/pushups.js",
-  "/": "pages/index.js",
-  "/api/stats": "pages/api/stats.js",
-  "/sign-in/[[...index]]": "pages/sign-in/[[...index]].js",
-  "/api/goals": "pages/api/goals.js"
+  "/sign-in/[[...index]]": "pages/sign-in/[[...index]].js"
 }
