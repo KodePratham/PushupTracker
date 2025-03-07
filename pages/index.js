@@ -21,6 +21,7 @@ export default function Home() {
   const [weekCount, setWeekCount] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
   
   // Load data from API when user is authenticated
   useEffect(() => {
@@ -32,26 +33,36 @@ export default function Home() {
   const fetchUserData = async () => {
     try {
       setIsLoading(true);
+      setFetchError(null);
       
       // Fetch logs for history
       const logsResponse = await fetch('/api/pushups');
+      if (!logsResponse.ok) {
+        const errorData = await logsResponse.json();
+        throw new Error(`Error fetching logs: ${errorData.error || logsResponse.statusText}`);
+      }
+      
       const logs = await logsResponse.json();
       setPushupData(prev => ({ ...prev, logs }));
       
       // Fetch stats
       const statsResponse = await fetch('/api/stats');
-      if (statsResponse.ok) {
-        const stats = await statsResponse.json();
-        setTodayCount(stats.todayCount || 0);
-        setWeekCount(stats.weekCount || 0);
-        setTotalCount(stats.totalCount || 0);
-        
-        if (stats.dailyGoal) {
-          setPushupData(prev => ({ ...prev, dailyGoal: stats.dailyGoal }));
-        }
+      if (!statsResponse.ok) {
+        const errorData = await statsResponse.json();
+        throw new Error(`Error fetching stats: ${errorData.error || statsResponse.statusText}`);
+      }
+      
+      const stats = await statsResponse.json();
+      setTodayCount(stats.todayCount || 0);
+      setWeekCount(stats.weekCount || 0);
+      setTotalCount(stats.totalCount || 0);
+      
+      if (stats.dailyGoal) {
+        setPushupData(prev => ({ ...prev, dailyGoal: stats.dailyGoal }));
       }
     } catch (error) {
       console.error('Failed to fetch user data:', error);
+      setFetchError(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -193,6 +204,17 @@ export default function Home() {
         {isLoading ? (
           <div className="flex justify-center my-12">
             <p className="text-lg">Loading your data...</p>
+          </div>
+        ) : fetchError ? (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-6">
+            <p className="font-medium">Error loading data</p>
+            <p className="text-sm mt-1">{fetchError}</p>
+            <button 
+              onClick={() => fetchUserData()} 
+              className="mt-2 bg-red-100 px-3 py-1 rounded-md text-red-800 text-sm hover:bg-red-200 transition-colors"
+            >
+              Try Again
+            </button>
           </div>
         ) : (
           <>
