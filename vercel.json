@@ -1,5 +1,11 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next"
+  "outputDirectory": ".next",
+  "env": {
+    "NEXT_PUBLIC_CLERK_FRONTEND_API": "@next_public_clerk_frontend_api",
+    "CLERK_API_KEY": "@clerk_api_key",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "@next_public_clerk_publishable_key",
+    "CLERK_SECRET_KEY": "@clerk_secret_key"
+  }
 }

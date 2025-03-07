@@ -10,8 +10,15 @@ export default function SignInPage() {
       </Head>
       
       <div className="w-full max-w-md mb-8 text-center">
-        <h1 className="text-3xl font-bold text-indigo-600">PushupTracker</h1>
+        <Link href="/">
+          <a className="text-3xl font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
+            PushupTracker
+          </a>
+        </Link>
         <p className="mt-2 text-gray-600">Sign in to track your pushup journey</p>
+        <p className="mt-1 text-sm text-gray-500">
+          Don't have an account? <Link href="/sign-up"><a className="text-indigo-600 hover:underline">Sign up</a></Link>
+        </p>
       </div>
       
       <div className="w-full max-w-md">

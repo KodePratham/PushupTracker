@@ -32,36 +32,22 @@ function MyApp({ Component, pageProps }) {
       dividerLine: "bg-gray-200",
       dividerText: "text-gray-500 text-sm",
       identityPreview: "border border-gray-200",
-      footerActionLink: "text-indigo-600 font-medium hover:text-indigo-700",
-      
-      // Remove branding
-      rootBox: {
-        "& .cl-auth-footer": {
-          display: "none"
-        },
-        "& .cl-powered-by-clerk": {
-          display: "none"
-        }
-      }
+      footerActionLink: "text-indigo-600 font-medium hover:text-indigo-700"
     },
     layout: {
       showOptionalFields: false,
-      logoPlacement: 'none', // Hide the logo space
-      logoImageUrl: null, // No logo
+      logoPlacement: 'none',
+      logoImageUrl: null,
       showExternalLinks: false,
       socialButtonsPlacement: 'bottom',
-      socialButtonsVariant: 'blockButton',
-      termsPageUrl: null, // Remove terms link
-      privacyPageUrl: null // Remove privacy link
+      socialButtonsVariant: 'blockButton'
     }
   };
 
   return (
     <ClerkProvider 
       {...pageProps} 
-      navigate={(to) => window.location.href = to}
       appearance={clerkAppearance}
-      // Add explicit options to hide branding
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
       signInUrl="/sign-in"
       signUpUrl="/sign-up"

@@ -10,8 +10,15 @@ const SignUpPage = () => {
       </Head>
       
       <div className="w-full max-w-md mb-8 text-center">
-        <h1 className="text-3xl font-bold text-indigo-600">PushupTracker</h1>
+        <Link href="/">
+          <a className="text-3xl font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
+            PushupTracker
+          </a>
+        </Link>
         <p className="mt-2 text-gray-600">Create an account to start tracking your pushups</p>
+        <p className="mt-1 text-sm text-gray-500">
+          Already have an account? <Link href="/sign-in"><a className="text-indigo-600 hover:underline">Sign in</a></Link>
+        </p>
       </div>
       
       <div className="w-full max-w-md">

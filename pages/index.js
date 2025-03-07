@@ -143,16 +143,27 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center flex-col p-4">
         <Head>
-          <title>Pushup Tracker - Sign In Required</title>
+          <title>Pushup Tracker - Welcome</title>
         </Head>
-        <h1 className="text-3xl font-bold mb-4">Welcome to Pushup Tracker</h1>
-        <p className="text-lg mb-6">Please sign in to track your pushups</p>
-        <a 
-          href="/sign-in" 
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Sign In
-        </a>
+        <h1 className="text-3xl font-bold text-indigo-600 mb-4">Welcome to Pushup Tracker</h1>
+        <p className="text-lg text-gray-600 mb-8">Track your pushup journey and achieve your fitness goals</p>
+        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs">
+          <a 
+            href="/sign-in" 
+            className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-center"
+          >
+            Sign In
+          </a>
+          <a 
+            href="/sign-up" 
+            className="px-6 py-3 bg-secondary-500 text-white rounded-lg hover:bg-secondary-600 transition-colors text-center"
+          >
+            Create Account
+          </a>
+        </div>
+        <p className="mt-6 text-sm text-gray-500">
+          First time? Click "Create Account" to get started!
+        </p>
       </div>
     );
   }

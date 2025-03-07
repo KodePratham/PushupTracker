@@ -21,7 +21,35 @@ export default function Layout({ children, title = 'PushupTracker' }) {
       </Head>
 
       <div className="min-h-screen flex flex-col bg-gray-50">
-        {isLoaded && userId && (
+        {!isLoaded || !userId ? (
+          <nav className="bg-indigo-600 shadow-md">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex items-center justify-between h-16">
+                <div className="flex-shrink-0 flex items-center">
+                  <Link href="/">
+                    <span className="text-white font-bold text-xl cursor-pointer">
+                      PushupTracker
+                    </span>
+                  </Link>
+                </div>
+                <div className="flex">
+                  <div className="flex items-center space-x-4">
+                    <Link href="/sign-in">
+                      <span className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-indigo-700 cursor-pointer">
+                        Sign In
+                      </span>
+                    </Link>
+                    <Link href="/sign-up">
+                      <span className="px-3 py-2 rounded-md text-sm font-medium bg-white text-indigo-600 hover:bg-gray-100 transition-colors cursor-pointer">
+                        Sign Up
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        ) : (
           <nav className="bg-indigo-600 shadow-md">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-16">
