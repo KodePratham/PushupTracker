@@ -6,15 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model Pushup {
-  id        String   @id @default(cuid())
+model PushupLog {
+  id        Int      @id @default(autoincrement())
   count     Int
+  date      DateTime @default(now())
   userId    String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
 }
 
 model UserGoal {
