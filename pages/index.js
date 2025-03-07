@@ -109,12 +109,16 @@ export default function Home() {
       });
       
       if (response.ok) {
-        // Success! Update goal and refresh data
-        setPushupData(prev => ({ ...prev, dailyGoal: goal }));
-        fetchUserData();
+        const updatedGoal = await response.json();
+        // Set the goal from the response rather than the input value
+        setPushupData(prev => ({ ...prev, dailyGoal: updatedGoal.dailyGoal }));
+        setTodayCount(prev => prev); // Force recalculation of progress
         setGoalValue('');
+        // Success message
+        alert('Goal updated successfully!');
       } else {
-        alert('Error setting goal. Please try again.');
+        const errorData = await response.json();
+        alert(`Error setting goal: ${errorData.error || 'Please try again'}`);
       }
     } catch (error) {
       console.error('Error setting goal:', error);
@@ -201,27 +205,27 @@ export default function Home() {
             
             {/* Goal Section */}
             <section className="bg-white p-6 rounded-lg shadow-sm border-t-4 border-secondary-500 mb-6">
-              <h2 className="text-xl font-semibold text-primary-600 mb-4 flex items-center">
-                <i className="fas fa-bullseye mr-2"></i> Your Daily Goal
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                <i className="fas fa-bullseye mr-2 text-secondary-500"></i> Your Daily Goal
               </h2>
               
               <div className="my-6">
                 <div className="h-4 bg-gray-200 rounded-full overflow-hidden shadow-inner mb-2">
                   <div 
-                    className="h-full bg-gradient-to-r from-secondary-500 to-secondary-600 rounded-full transition-all duration-500 ease-out" 
+                    className="h-full bg-secondary-500 rounded-full transition-all duration-500 ease-out" 
                     style={{ width: `${progressPercentage}%` }}
                   ></div>
                 </div>
                 <p className="text-center font-semibold">
                   {todayCount} / {pushupData.dailyGoal || 0} pushups 
                   {progressPercentage > 0 && (
-                    <span className="text-secondary-600 ml-2">({progressPercentage}%)</span>
+                    <span className="text-secondary-500 ml-2">({progressPercentage}%)</span>
                   )}
                 </p>
               </div>
               
               <form onSubmit={handleSetGoal} className="mt-4">
-                <label htmlFor="goal" className="block font-medium text-primary mb-1">
+                <label htmlFor="goal" className="block font-medium text-gray-700 mb-1">
                   Set Daily Goal:
                 </label>
                 <input
@@ -234,7 +238,10 @@ export default function Home() {
                   min="1"
                   required
                 />
-                <button type="submit" className="btn mt-3">
+                <button 
+                  type="submit" 
+                  className="btn btn-secondary w-full mt-3"
+                >
                   <i className="fas fa-check mr-2"></i> Set Goal
                 </button>
               </form>

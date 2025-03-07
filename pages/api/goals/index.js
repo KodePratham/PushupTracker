@@ -27,20 +27,49 @@ export default async function handler(req, res) {
     try {
       const { dailyGoal } = req.body;
       
-      if (!dailyGoal || isNaN(dailyGoal) || dailyGoal <= 0) {
-        return res.status(400).json({ error: 'Valid daily goal is required' });
+      // Better validation
+      if (dailyGoal === undefined || dailyGoal === null) {
+        return res.status(400).json({ error: 'Daily goal is required' });
       }
       
-      const goal = await prisma.userGoal.upsert({
-        where: { userId },
-        update: { dailyGoal: parseInt(dailyGoal) },
-        create: { userId, dailyGoal: parseInt(dailyGoal) },
+      const goalNumber = parseInt(dailyGoal);
+      if (isNaN(goalNumber)) {
+        return res.status(400).json({ error: 'Daily goal must be a number' });
+      }
+      
+      if (goalNumber <= 0) {
+        return res.status(400).json({ error: 'Daily goal must be greater than zero' });
+      }
+      
+      // Try to find existing goal first
+      const existingGoal = await prisma.userGoal.findUnique({
+        where: { userId }
       });
+      
+      let goal;
+      if (existingGoal) {
+        // Update existing goal
+        goal = await prisma.userGoal.update({
+          where: { userId },
+          data: { dailyGoal: goalNumber }
+        });
+      } else {
+        // Create new goal
+        goal = await prisma.userGoal.create({
+          data: {
+            userId,
+            dailyGoal: goalNumber
+          }
+        });
+      }
       
       return res.status(200).json(goal);
     } catch (error) {
       console.error('Error updating goal:', error);
-      return res.status(500).json({ error: 'Failed to update goal' });
+      return res.status(500).json({ 
+        error: 'Failed to update goal', 
+        details: error.message 
+      });
     }
   }
 
